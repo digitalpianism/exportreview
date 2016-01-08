@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+ 
+    <modules>
+		<DigitalPianism_ExportReview>
+			<version>0.1.2</version>
+		</DigitalPianism_ExportReview>
+    </modules>
+	
+	<global>
+        <models>
+            <exportreview>
+                <class>DigitalPianism_ExportReview_Model</class>
+            </exportreview>
+        </models>
+	</global>
+ 
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <DigitalPianism_ExportReview before="Mage_Adminhtml">DigitalPianism_ExportReview_Adminhtml</DigitalPianism_ExportReview>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <events>
+            <!-- Before rendering event -->
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <digitalpianism_exportreview_add>
+                        <type>singleton</type>
+                        <class>exportreview/observer</class>
+                        <method>addMassExport</method>
+                    </digitalpianism_exportreview_add>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>
+ 
+</config>
